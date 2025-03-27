@@ -99,19 +99,30 @@
       margin-top: 20px;
     }
 
-    .dummy-email {
-      margin-top: 30px;
-      padding: 20px;
-      background: #fcfcfc;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-      font-family: Georgia, "Times New Roman", Times, serif;
-      font-size: 1rem;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      overflow-x: auto;
-    }
+    .preview-header {
+    background-color: #202124; /* Gmail dark grey */
+    color: #e8eaed;            /* Light text */
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+
+  .dummy-email {
+    border: 1px solid #ddd;
+    border-top: none;         /* remove top border so it connects with the header */
+    padding: 20px;
+    background: #fff;
+    font-family: 'Roboto', sans-serif;  /* optional, similar to Gmail */
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+
 
     /* Mobile adjustments */
     @media (max-width: 600px) {
