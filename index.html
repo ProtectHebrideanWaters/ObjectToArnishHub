@@ -123,6 +123,11 @@
     overflow-x: auto;
   }
 
+  textarea {
+  font-family: 'Roboto', sans-serif;
+}
+
+
 
     /* Mobile adjustments */
     @media (max-width: 600px) {
@@ -175,6 +180,11 @@
     <div class="form-group">
       <label for="userAddress">Your Address:</label>
       <input type="text" id="userAddress" placeholder="Enter your address" />
+    <div class="form-group" style="margin-top: 20px;">
+      <label for="personalStatement">Personalise your objection:</label>
+      <textarea id="personalStatement" placeholder="Please add a sentence (or more) on why this is important to you. So that not all objections are identical." rows="4"
+        style="width:100%; padding:10px; border:1px solid #ccc; border-radius:3px; box-sizing:border-box; font-size:1rem;"></textarea>
+    </div> 
     </div>
 
     <!-- Preview header -->
@@ -198,6 +208,7 @@
 
 I write to object to the proposed HVDC converter station approximately 2km southwest of Stornoway in the vicinity of Macauley Farm, on the basis of material planning considerations. The scale and location of this development raise serious concerns regarding environmental impact, planning policy, amenity, and infrastructure capacity.
 
+[PERSONAL]
 1. Environmental Impact
   ● Damage to Peatlands: The site is on carbon-rich peatland, a critical global carbon sink. Excavation, construction, and associated infrastructure (wind farms, pylons, substations) will lead to carbon release, undermining national and international climate targets.
   ● Disruption to Wildlife Habitat: The area is home to Red List bird species and other protected wildlife. Industrial-scale development, along with noise and artificial lighting, will have a significant detrimental impact.
@@ -231,6 +242,7 @@ Dear Sir/Madam,
 I am writing to formally object to the proposed High Voltage Direct Current (HVDC) converter station approximately 2km to the southwest of Stornoway in the vicinity of Macauley Farm. This objection is based on material planning considerations, including environmental destruction, failure to comply with planning policy, severe impact on local amenity, and major infrastructure concerns.
 The proposed development, covering 285 hectares—an area equivalent to the size of Stornoway or 399 football pitches—is grossly disproportionate and represents an unacceptable level of industrialisation in this rural and environmentally sensitive area.
 
+[PERSONAL]
 1. Environmental Impact
 The proposed converter station and its associated infrastructure, including wind farms, pylons, and substations, pose a significant threat to the local environment,
 particularly through: mitigating climate change by storing vast amounts of carbon. The excavation, drainage, and construction required for this project would lead to permanent damage to peatland ecosystems, releasing stored carbon and undermining Scotland’s climate targets and biodiversity commitments.
@@ -307,11 +319,20 @@ Full postal address: [ADDRESS]`;
 
     // Update the email preview
     function updateEmailPreview() {
-      const name = document.getElementById('userName').value || '[NAME]';
-      const address = document.getElementById('userAddress').value || '[ADDRESS]';
-      const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address);
-      document.getElementById('emailPreview').textContent = populatedText;
-    }
+        const name = document.getElementById('userName').value || '[NAME]';
+        const address = document.getElementById('userAddress').value || '[ADDRESS]';
+        const personalStatement = document.getElementById('personalStatement').value.trim();
+        // If a personal statement is provided add 
+        const personalText = personalStatement ? personalStatement + "\n" : "";
+        // Replace all placeholders
+        const populatedText = currentTemplate
+          .replace('[NAME]', name)
+          .replace('[ADDRESS]', address)
+          .replace('[PERSONAL]', personalText);
+        document.getElementById('emailPreview').textContent = populatedText;
+      }
+
+
 
     // Toggle short and long version buttons
     document.getElementById('shortBtn').addEventListener('click', () => {
@@ -332,32 +353,34 @@ Full postal address: [ADDRESS]`;
     document.getElementById('userAddress').addEventListener('input', updateEmailPreview);
 
     // When generate is clicked, open the default email client via a mailto link
-    document.getElementById('generate-btn').addEventListener('click', () => {
-      updateEmailPreview();
+  document.getElementById('generate-btn').addEventListener('click', () => {
       const name = document.getElementById('userName').value.trim();
       const address = document.getElementById('userAddress').value.trim();
 
-      // Check if name and address have been provided
+      // Check required fields
       if (name === '' || address === '') {
         alert("Please add your name and address before sending the email. Your objection will not be counted without this information.");
         return;
       }
 
-      const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address);
+      const personalStatement = document.getElementById('personalStatement').value.trim();
+      const personalText = personalStatement ? personalStatement + "\n\n" : "";
+      const populatedText = currentTemplate
+        .replace('[NAME]', name)
+        .replace('[ADDRESS]', address)
+        .replace('[PERSONAL]', personalText);
 
-      // Construct the mailto link
-      const recipient = "planning@cne-siar.gov.uk"; // Update as needed
+      // Construct mailto link 
+      const recipient = "planning@cne-siar.gov.uk";
       const subject = "25/00061/PPPM – Electricity Transmission Hub - HVDC Converter Station, Substations etc";
       const body = populatedText;
-
-      // Create mailto URL, encoding the components
       const mailtoLink = "mailto:" + encodeURIComponent(recipient) +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
-
-      // Open the default email client
       window.location.href = mailtoLink;
     });
+
+
 
     // Initial population of the email preview
     updateEmailPreview();
