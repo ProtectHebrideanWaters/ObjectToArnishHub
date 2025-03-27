@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Objection Email Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 20px;
+    }
+
+    .instructions {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .instructions p {
+      margin-bottom: 10px;
+    }
+
+    .toggle-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .toggle-buttons button {
+      margin: 0 5px;
+      padding: 8px 16px;
+      border: 1px solid #007BFF;
+      background: #007BFF;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .toggle-buttons button.active {
+      background: #0056b3;
+    }
+
+    .required-info {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 10px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    #generate-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1rem;
+      border: none;
+      background: #28a745;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .dummy-email {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fcfcfc;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .toggle-buttons button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Objection Email Generator</h1>
+
+    <div class="instructions">
+      <p><strong>Create your draft objection email in one click.</strong></p>
+      <p>Choose the long or short version below and add your name and address.</p>
+      <p>Your details are <strong>not stored</strong> – they’re only used to populate your email draft. Feel free to copy and paste if you prefer.</p>
+      <p>When you click "Generate," your email client will open with the draft for review before sending.</p>
+      <p>Based on sample letters from <a href="https://www.emg-lewis.co.uk/take-action"
+          target="_blank">emg-lewis.co.uk/take-action</a>.</p>
+    </div>
+
+    <!-- Toggle buttons for short / long versions -->
+    <div class="toggle-buttons">
+      <button id="shortBtn" class="active">Short Version</button>
+      <button id="longBtn">Long Version</button>
+    </div>
+
+    <!-- Notice about required details -->
+    <p class="required-info">
+      Your name and address are required by the council to officially count your objection.
+    </p>
+
+    <!-- User details input -->
+    <div class="form-group">
+      <label for="userName">Your Name:</label>
+      <input type="text" id="userName" placeholder="Enter your name" />
+    </div>
+    <div class="form-group">
+      <label for="userAddress">Your Address:</label>
+      <input type="text" id="userAddress" placeholder="Enter your address" />
+    </div>
+
+    <!-- Preview header -->
+    <div class="preview-header">Generated Preview:</div>
+      
+
+    <!-- Dummy email preview (optional) -->
+    <div class="dummy-email" id="emailPreview">
+      [Your objection text will appear here...]
+    </div>
+
+    <!-- Generate button -->
+    <button id="generate-btn">Generate My Email Draft</button>
+  </div>
+
+  <script>
+    // Objection templates (do not change text)
+    const objectionShort = `Dear Sir/Madam,
+
+25/00061/PPPM – Electricity Transmission Hub - HVDC Converter Station, Substations etc
+
+I write to object to the proposed HVDC converter station approximately 2km southwest of Stornoway in the vicinity of Macauley Farm, on the basis of material planning considerations. The scale and location of this development raise serious concerns regarding environmental impact, planning policy, amenity, and infrastructure capacity.
+
+1. Environmental Impact
+  ● Damage to Peatlands: The site is on carbon-rich peatland, a critical global carbon sink. Excavation, construction, and associated infrastructure (wind farms, pylons, substations) will lead to carbon release, undermining national and international climate targets.
+  ● Disruption to Wildlife Habitat: The area is home to Red List bird species and other protected wildlife. Industrial-scale development, along with noise and artificial lighting, will have a significant detrimental impact.
+
+2. Impact on Amenity
+  ● Noise & Light Pollution: A converter station of this size will generate a continuous low-frequency hum and require 24-hour lighting, affecting the tranquillity of the surrounding area.
+  ● Visual Impact: The proposed structure is industrial in nature, out of character with its rural setting, and will be highly visible from multiple viewpoints.
+
+3. Infrastructure & Road Safety Concerns
+  ● Traffic & Safety Issues: The construction phase will bring heavy vehicle traffic to roads not designed for such loads, increasing safety risks.
+  ● Strain on Local Services: Emergency services, drainage, and waste management systems may struggle to cope with the demands of this facility.
+
+4. Planning Policy & ‘Salami Slicing’ of Development
+  ● Inadequate Consideration of Cumulative Impact: The converter station covers 285 hectares, an area equivalent to Stornoway or 399 football pitches. It is part of a larger industrialisation effort, including the 33-turbine Stornoway Wind Farm (EDF/ESB), and other proposed wind farms (e.g., N3 Talisk and N4 Spiorad na Mara), all of which are seeking onshore substations nearby.
+  ● Failure to Conduct a Comprehensive Environmental Impact Assessment (EIA): The fragmented approval process fails to assess the full impact of multiple interconnected projects. A comprehensive EIA must be undertaken before any decision is made.
+
+Conclusion
+Given the serious environmental, amenity, and planning concerns, I urge Comhairle nan Eilean Siar to reject this proposal. The development threatens peatland integrity, protected wildlife, and local infrastructure while bypassing the necessary cumulative impact assessments.
+
+Please confirm receipt of this objection.
+
+Yours faithfully,
+[NAME]
+[ADDRESS]`;
+
+    const objectionLong = `
+Dear Sir/Madam,
+
+25/00061/PPPM – Electricity Transmission Hub - HVDC Converter Station, Substations etc
+
+I am writing to formally object to the proposed High Voltage Direct Current (HVDC) converter station approximately 2km to the southwest of Stornoway in the vicinity of Macauley Farm. This objection is based on material planning considerations, including environmental destruction, failure to comply with planning policy, severe impact on local amenity, and major infrastructure concerns.
+The proposed development, covering 285 hectares—an area equivalent to the size of Stornoway or 399 football pitches—is grossly disproportionate and represents an unacceptable level of industrialisation in this rural and environmentally sensitive area.
+
+1. Environmental Impact
+The proposed converter station and its associated infrastructure, including wind farms, pylons, and substations, pose a significant threat to the local environment,
+particularly through: mitigating climate change by storing vast amounts of carbon. The excavation, drainage, and construction required for this project would lead to permanent damage to peatland ecosystems, releasing stored carbon and undermining Scotland’s climate targets and biodiversity commitments.
+This contradicts:
+  ● The Scottish Government’s Peatland Action Plan, which aims to protect and restore peatlands.
+  ● The Climate Change (Scotland) Act 2019, which commits to net-zero emissions by 2045.
+b) Disruption to Protected Wildlife
+The proposed site is home to Red List bird species—species of high conservation concern that are already experiencing significant declines. Large-scale development, along with increased noise, artificial lighting, and habitat disturbance, will have irreversible negative impacts on these species.
+The destruction of habitats and increased human activity will disturb nesting and breeding patterns, affecting bird species such as:
+  ● Golden Eagle (Aquila chrysaetos)
+  ● Merlin (Falco columbarius)
+  ● Red-throated Diver (Gavia stellata)
+The UK Nature Conservation (Scotland) Act 2004 requires authorities to safeguard biodiversity—this proposal clearly contradicts this obligation.
+
+2. Severe Impact on Amenity
+a) Noise and Light Pollution
+  ● A HVDC converter station of this magnitude will generate a continuous low-frequency hum, which is known to cause sleep disturbances, stress, and reduced quality of life for residents.
+  ● 24-hour security and operational lighting will result in significant light pollution, disrupting the dark skies of the Outer Hebrides, an important feature of the region’s natural heritage.
+b) Visual Impact
+  ● The proposed converter station is an industrial structure, entirely out of character with its rural surroundings.
+  ● Given the lack of natural screening, the facility will be highly visible from multiple viewpoints, permanently altering the landscape.
+  ● The cumulative impact of the converter station plus associated wind farms and infrastructure will further degrade the natural beauty of the area.
+
+3. Infrastructure & Road Safety Concerns
+a) Increased Traffic and Road Safety Risks
+The construction phase will result in a major increase in heavy goods vehicle
+(HGV) traffic, which will:  
+  ● Damage rural roads, which are not built to withstand industrial transport.
+  ● Increase the risk of accidents for pedestrians, cyclists, and other road users.
+  ● Cause congestion on key routes, particularly in and around Stornoway.
+There is no clear mitigation strategy for these impacts, making the proposal irresponsible and unviable.
+b) Strain on Local Services
+  ● Emergency services, drainage, and waste management systems may struggle to cope with the demands of this facility.
+  ● The Stornoway area has limited infrastructure to support such an industrial project, yet there has been no clear assessment of how local services will be affected.
+
+4. Planning Policy Violations & ‘Salami Slicing’ of Developments
+a) Inadequate Consideration of Cumulative Impact
+This application fails to acknowledge the larger industrialisation plan for this area. The converter station is only one part of a wider network of developments,
+including:
+  ● Stornoway Wind Farm (EDF/ESB) – 33 turbines, up to 180m in height
+  ● Proposed substations for the N3 Talisk and N4 Spiorad na Mara wind farms
+  ● Multiple onshore windfarm substations
+  ● Onshore, near shore and off shore windfarms around Lewis
+Each project is being considered individually, which artificially reduces their perceived impact. This is a clear example of ‘salami slicing’, where a large development is broken into smaller applications to avoid proper scrutiny.
+This approach contradicts both national and local planning policies, including:
+  ● Scottish Planning Policy (SPP), which states that “cumulative impacts must be fully assessed before determining major infrastructure projects.”
+  ● Comhairle nan Eilean Siar Local Development Plan, which seeks to protect natural and cultural heritage from inappropriate development.
+b) Failure to Conduct a Comprehensive Environmental Impact Assessment
+(EIA)
+Despite the massive scale of this proposal and its interconnection with multiple other industrial projects, a comprehensive EIA has not been completed.
+  ● An EIA must be undertaken that considers the combined impact of this converter station and all associated developments before any decision is
+made.
+  ● Failure to do so would represent a significant procedural flaw, which could lead to legal challenges against the project.
+
+Conclusion
+This proposal is fundamentally flawed and must be rejected on the basis of:
+1. Irreversible damage to peatlands, undermining Scotland’s climate and biodiversity commitments.
+2. Severe disruption to wildlife, including protected Red List species.
+3. Significant loss of residential amenity, due to noise, light pollution, and visual impact.
+4. Major infrastructure concerns, including road safety risks and strain on local services.
+5. Failure to properly assess the cumulative impact, violating planning policy.
+6. Lack of a full Environmental Impact Assessment, making the application incomplete and unreliable.
+
+I urge Comhairle nan Eilean Siar to reject this application and insist on a full-scale review of the industrialisation of this area, with proper environmental scrutiny.
+
+Please confirm receipt of this objection.
+
+Yours faithfully
+[NAME]
+Full postal address: [ADDRESS]`;
+
+    // Default to short version
+    let currentTemplate = objectionShort;
+
+    // Update the email preview
+    function updateEmailPreview() {
+      const name = document.getElementById('userName').value || '[NAME]';
+      const address = document.getElementById('userAddress').value || '[ADDRESS]';
+      const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address);
+      document.getElementById('emailPreview').textContent = populatedText;
+    }
+
+    // Toggle short and long version buttons
+    document.getElementById('shortBtn').addEventListener('click', () => {
+      currentTemplate = objectionShort;
+      document.getElementById('shortBtn').classList.add('active');
+      document.getElementById('longBtn').classList.remove('active');
+      updateEmailPreview();
+    });
+    document.getElementById('longBtn').addEventListener('click', () => {
+      currentTemplate = objectionLong;
+      document.getElementById('longBtn').classList.add('active');
+      document.getElementById('shortBtn').classList.remove('active');
+      updateEmailPreview();
+    });
+
+    // Update preview as user types
+    document.getElementById('userName').addEventListener('input', updateEmailPreview);
+    document.getElementById('userAddress').addEventListener('input', updateEmailPreview);
+
+    // When generate is clicked, open the default email client via a mailto link
+    document.getElementById('generate-btn').addEventListener('click', () => {
+      updateEmailPreview();
+      const name = document.getElementById('userName').value.trim();
+      const address = document.getElementById('userAddress').value.trim();
+
+      // Check if name and address have been provided
+      if (name === '' || address === '') {
+        alert("Please add your name and address before sending the email. Your objection will not be counted without this information.");
+        return;
+      }
+
+      const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address);
+
+      // Construct the mailto link
+      const recipient = "planning@cne-siar.gov.uk"; // Update as needed
+      const subject = "25/00061/PPPM – Electricity Transmission Hub - HVDC Converter Station, Substations etc";
+      const body = populatedText;
+
+      // Create mailto URL, encoding the components
+      const mailtoLink = "mailto:" + encodeURIComponent(recipient) +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      // Open the default email client
+      window.location.href = mailtoLink;
+    });
+
+    // Initial population of the email preview
+    updateEmailPreview();
+  </script>
+
+</body>
+
+</html>
