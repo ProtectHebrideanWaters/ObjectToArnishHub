@@ -175,6 +175,11 @@
     <div class="form-group">
       <label for="userAddress">Your Address:</label>
       <input type="text" id="userAddress" placeholder="Enter your address" />
+    <div class="form-group">
+      <label for="personalStatement">Personalise your objection:</label>
+      <textarea id="personalStatement" placeholder="Add a sentence or more on why this is important to you." rows="4"
+        style="width:100%; padding:10px; border:1px solid #ccc; border-radius:3px; box-sizing:border-box; font-size:1rem;"></textarea>
+    </div>  
     </div>
 
     <!-- Preview header -->
@@ -307,11 +312,18 @@ Full postal address: [ADDRESS]`;
 
     // Update the email preview
     function updateEmailPreview() {
-      const name = document.getElementById('userName').value || '[NAME]';
-      const address = document.getElementById('userAddress').value || '[ADDRESS]';
-      const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address);
-      document.getElementById('emailPreview').textContent = populatedText;
-    }
+        const name = document.getElementById('userName').value || '[NAME]';
+        const address = document.getElementById('userAddress').value || '[ADDRESS]';
+        const personalStatement = document.getElementById('personalStatement').value.trim();
+        // Insert the personal statement at the end of the template with a header, if provided
+        let extraText = "";
+        if (personalStatement !== "") {
+          extraText = "\n\nPersonal Note:\n" + personalStatement;
+        }
+        const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address) + extraText;
+        document.getElementById('emailPreview').textContent = populatedText;
+      }
+
 
     // Toggle short and long version buttons
     document.getElementById('shortBtn').addEventListener('click', () => {
@@ -334,16 +346,12 @@ Full postal address: [ADDRESS]`;
     // When generate is clicked, open the default email client via a mailto link
     document.getElementById('generate-btn').addEventListener('click', () => {
       updateEmailPreview();
-      const name = document.getElementById('userName').value.trim();
-      const address = document.getElementById('userAddress').value.trim();
-
-      // Check if name and address have been provided
-      if (name === '' || address === '') {
-        alert("Please add your name and address before sending the email. Your objection will not be counted without this information.");
-        return;
+      const personalStatement = document.getElementById('personalStatement').value.trim();
+      let extraText = "";
+      if (personalStatement !== "") {
+        extraText = "\n\nPersonal Note:\n" + personalStatement;
       }
-
-      const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address);
+      const populatedText = currentTemplate.replace('[NAME]', name).replace('[ADDRESS]', address) + extraText;
 
       // Construct the mailto link
       const recipient = "planning@cne-siar.gov.uk"; // Update as needed
