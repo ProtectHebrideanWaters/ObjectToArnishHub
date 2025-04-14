@@ -357,6 +357,8 @@ Full postal address: [ADDRESS]`;
     // Update preview as user types
     document.getElementById('userName').addEventListener('input', updateEmailPreview);
     document.getElementById('userAddress').addEventListener('input', updateEmailPreview);
+    document.getElementById('personalStatement').addEventListener('input', updateEmailPreview);
+
 
     // When generate is clicked, open the default email client via a mailto link
   document.getElementById('generate-btn').addEventListener('click', () => {
