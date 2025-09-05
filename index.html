@@ -59,6 +59,21 @@
         font-size: 0.9rem;
         flex: 1 1 45%; /* Buttons take ~half the width, wrapping nicely */
         margin-bottom: 5px; /* Small spacing between stacked buttons */
+      
+    }
+}
+
+@media (min-width: 600px) {
+  .messenger-share {
+    display: none;
+  }
+}
+    
+
+    /* Optional: show on mobile */
+    @media (max-width: 599px) {
+      .messenger-share {
+        display: inline-flex; /* or block/flex depending on your layout */
       }
     }
     
@@ -406,19 +421,33 @@ Full postal address: [ADDRESS]`;
     // Initial population of the email preview
     updateEmailPreview();
   </script>
-<!-- WhatsApp Share Section -->
-<div class="share-whatsapp" style="text-align: center; margin-top: 20px;">
+
+<!-- Share Buttons -->
+<div class="share-buttons" style="text-align: center; margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+  
+  <!-- WhatsApp -->
   <a
     href="https://api.whatsapp.com/send?text=We%20need%20your%20help%20to%20stop%20the%20Arnish%20Hub!%20Objections%20close%20today,%205th%20Sep%20%E2%80%94%20takes%20just%202%20mins:%20https%3A%2F%2Fobjecttoarnishhub.com%0A%0AReasons%20to%20object%3A%20423,000m3%20of%20peat%20to%20be%20dug%20up,%20endangered%20birds%20%2B%20otters%20lose%20habitats,%20River%20Creed%20at%20risk%20of%20pollution.%20The%20hub%20is%20enormous%20(23%20Murrayfield%20pitches),%20visible%20from%20the%20castle%20grounds,%20Iolaire%20Monument%20%26%20War%20Memorial.%20First%20step%20in%20industrialising%20Lewis;%20projects%20like%20Spiorad%20na%20Mara%20depend%20on%20it."
     target="_blank"
-    style="text-decoration: none; display: inline-block;"
+    style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px;"
   >
-    <i class="fab fa-whatsapp" style="font-size: 40px; color: #25D366; vertical-align: middle;"></i>
-    <span style="font-size: 1rem; color: #333; vertical-align: middle; margin-left: 10px;">
-      Share this with your friends!
-    </span>
+    <i class="fab fa-whatsapp" style="font-size: 40px; color: #25D366;"></i>
+    <span style="font-size: 1rem; color: #333;">Share this with your friends!</span>
   </a>
+
+  <!-- Messenger (mobile only) -->
+  <a
+    href="fb-messenger://share?link=https%3A%2F%2Fobjecttoarnishhub.com"
+    class="messenger-share"
+    style="text-decoration: none; align-items: center; gap: 10px;"
+    
+  >
+    <i class="fab fa-facebook-messenger" style="font-size: 40px; color: #0084FF;"></i>
+    <span style="font-size: 1rem; color: #333;">Share on Messenger </span>
+  </a>
+
 </div>
+
 
 <!-- Social Follow Footer -->
 <div class="follow-footer" style="text-align: center; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px;">
