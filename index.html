@@ -185,6 +185,29 @@
       padding: 10px;
       background: #f9f9f9; /* optional light background */
     }
+    
+    .copy-btn {
+        display: inline-block;        /* keeps it tight instead of full width */
+        padding: 10px 18px;           /* slightly smaller than generate button */
+        font-size: 1rem;              /* slightly smaller text */
+        background-color: #003366; /* dark blue */   
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 10px;
+        
+    }
+
+    .copy-btn:hover {
+        background-color: #218838;    /* slightly darker green on hover */
+    }
+    
+    .button-container {
+        text-align: center; /* centers inline/block-inline elements */
+        margin-top: 8px;
+    }
   </style>
 </head>
 
@@ -247,7 +270,13 @@
     <p style="font-size: 0.9rem; color: #555; margin-top: 10px; text-align: center;">
       If your email client isn't set up to open links automatically, you can copy and paste the text above into an email to planning@cne-siar.gov.uk.
     </p>
+ 
+  
+  <!-- Copy to Clipboard button -->
+  <div class="button-container">
+      <button class="copy-btn">Copy Text to Clipboard</button>
   </div>
+  
 
   <script>
     // Objection templates (do not change text)
@@ -427,6 +456,16 @@ Full postal address: [ADDRESS]`;
 
     // Initial population of the email preview
     updateEmailPreview();
+    
+    document.getElementById('copy-btn').addEventListener('click', () => {
+        const emailText = document.getElementById('emailPreview').textContent;
+        navigator.clipboard.writeText(emailText).then(() => {
+            alert("Email text copied to clipboard!");
+        }).catch(err => {
+            alert("Failed to copy text: " + err);
+        });
+    });
+    
   </script>
 
 <!-- Share Buttons -->
