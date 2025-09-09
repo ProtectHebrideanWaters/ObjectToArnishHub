@@ -15,11 +15,13 @@
       margin: 0;
     }
     .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 10px; /* Adjust spacing between icons as needed */
-      margin-top: 20px;
-    }
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust spacing between icons as needed */
+  margin-top: 20px;
+}
+
+
     .container {
       max-width: 700px;
       margin: auto;
@@ -46,37 +48,9 @@
     }
 
     .toggle-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
+      text-align: center;
       margin-bottom: 20px;
-      flex-wrap: wrap; /* Allow buttons to wrap on small screens */
     }
-
-    @media (max-width: 600px) {
-      .toggle-buttons button {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-        flex: 1 1 45%; /* Buttons take ~half the width, wrapping nicely */
-        margin-bottom: 5px; /* Small spacing between stacked buttons */
-      
-    }
-}
-
-@media (min-width: 600px) {
-  .messenger-share {
-    display: none;
-  }
-}
-    
-
-    /* Optional: show on mobile */
-    @media (max-width: 599px) {
-      .messenger-share {
-        display: inline-flex; /* or block/flex depending on your layout */
-      }
-    }
-    
 
     .toggle-buttons button {
       margin: 0 5px;
@@ -178,346 +152,54 @@
         font-size: 0.9rem;
       }
     }
-    
-    .instagram-footer {
-      display: flex;
-      justify-content: center; /* center horizontally */
-      padding: 10px;
-      background: #f9f9f9; /* optional light background */
-    }
-    
-    .copy-btn {
-        display: inline-block;        /* keeps it tight instead of full width */
-        padding: 10px 18px;           /* slightly smaller than generate button */
-        font-size: 1rem;              /* slightly smaller text */
-        background-color: #003366; /* dark blue */   
-        color: white;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-        transition: background 0.2s;
-        margin-top: 10px;
-        margin-bottom: 20px; /* adds space below the button */
-    }
-
-    .copy-btn:hover {
-        background-color: #218838;    /* slightly darker green on hover */
-    }
-    
-    .button-container {
-        text-align: center; /* centers inline/block-inline elements */
-        margin-top: 8px;
-    }
   </style>
 </head>
 
 <body>
 
   <div class="container">
-    <h1>Objection Email Generator</h1>
-    <h2 style="text-align: center; color: #d9534f; margin-top: 10px;">
-      Deadline: New 30 day window from 7th August 2025
-    </h2>
-
-
-  <div class="instructions">
-     <p><strong>Why we need your objection</strong></p>
-   <ul>
-     <li>480,000 m³ of peat is at risk – a valuable carbon store and important habitats.</li>
-     <li>Endangered birds have confirmed nesting sites here</li>
-     <li>River Creed at risk of pollution</li>
-     <li>The hub is enormous and it’s the gateway — the first step in industrialising Lewis.</li>
-   </ul>
-    
-    <p><strong>Create your draft objection email in one click.</strong></p>
-    <p><em>Remember, anyone can object – you don't have to live locally to have your say!</em></p>
-    <p>Choose between the two versions below and add your name and address.</p>
-    <p>Your details are <strong>not stored</strong> – they’re only used to populate your email draft. Feel free to copy
-      and paste if you prefer.</p>
-    <p>When you click "Generate," your email client will open with the draft for review before sending.</p>
-  </div>
-
-
-    <!-- Toggle buttons for short / long versions -->
-    <div class="toggle-buttons">
-      <button id="shortBtn" class="active">Adding supplementary info</button>
-      <button id="longBtn">Not Objected Before</button>
-    </div>
-
-    <!-- Notice about required details -->
-    <p class="required-info">
-      Your name and address are required by the council to officially count your objection.
-    </p>
-
-    <!-- User details input -->
-    <div class="form-group">
-      <label for="userName">Your Name:</label>
-      <input type="text" id="userName" placeholder="Enter your name" />
-    </div>
-    <div class="form-group">
-      <label for="userAddress">Your Address:</label>
-      <input type="text" id="userAddress" placeholder="Enter your address" />
-    <div class="form-group" style="margin-top: 20px;">
-      <label for="personalStatement">Personalise your objection:</label>
-      <textarea id="personalStatement" placeholder="Please add a sentence (or more) on why this is important to you. So that not all objections are identical." rows="4"
-        style="width:100%; padding:10px; border:1px solid #ccc; border-radius:3px; box-sizing:border-box; font-size:1rem;"></textarea>
-    </div> 
-    </div>
-
-    <!-- Preview header -->
-    <div class="preview-header">Generated Preview:</div>
+      <h1>Objection Email Generator</h1>
       
-
-    <!-- Dummy email preview (optional) -->
-    <div class="dummy-email" id="emailPreview">
-      [Your objection text will appear here...]
-    </div>
-
-    <!-- Generate button -->
-    <button id="generate-btn">Generate My Email Draft</button>
-    <p style="font-size: 0.9rem; color: #555; margin-top: 10px; text-align: center;">
-      If your email client isn't set up to open links automatically, you can copy and paste the text above into an email to planning@cne-siar.gov.uk.
-    </p>
- 
-  
-  <!-- Copy to Clipboard button -->
-  <div class="button-container">
-      <button class="copy-btn">Copy Text to Clipboard</button>
-  </div>
-  
-
-  <script>
-    // Objection templates (do not change text)
-    const objectionShort = `Dear Sir/Madam,
-
-25/00061/PPPM – Electricity Transmission Hub - HVDC Converter Station, Substations etc
-
-Further to my earlier objection to 25/00061/PPPM, I submit this supplementary representation in response to the additional environmental information re-advertised under Regulation 27 (30-day period beginning 7 August 2025). Please append this to my previous representation.
-
-I continue to object to the proposal at Macaulay Farm/Arnish on material planning grounds. The new documents (SEI No. 2) reinforce that significant environmental risks remain unresolved.
-
-Key points arising from the new documents
-
-  ● Breeding birds: The 2025 Moorland Breeding Bird Survey records red-listed species breeding in the development area (including hen harrier, curlew, cuckoo and skylark). Confirmed breeding within the site also includes meadow pipit, stonechat and greylag goose. This demonstrates the area’s ecological sensitivity.
-  ● Water & drainage capacity: Scottish Water issues no objection, but explicitly states this does not confirm the development can currently be serviced. Capacity for water and wastewater is not confirmed, capacity cannot be reserved until after any planning consent, surface water will not be accepted to the combined sewer, and there may be conflicts with existing assets. This indicates servicing risks and potential reliance on off-site upgrades not before the committee.
-  ● Peat/carbon-rich soils: The SEI reissues peat probing and NVC data and notes layout updates; however, the applicant states “none of the conclusions have changed.” Peat disturbance, carbon loss risk and permanent habitat loss therefore remain significant concerns.
-  ● Landscape/visual & cumulative effects: Additional visualisations and cumulative assessment have been provided, yet again the applicant confirms conclusions are unchanged, implying that the significant landscape/visual effects persist.
-          
-Given the above, my objection stands and is strengthened by the SEI. I urge Comhairle nan Eilean Siar to reject this application and insist on a full-scale review of the industrialisation of this area, with proper environmental scrutiny.
-          
-Please confirm receipt and attach this to my earlier representation.
-
-Yours faithfully,
-[NAME]
-[ADDRESS]`;
-
-    const objectionLong = `
-Dear Sir/Madam,
-
-25/00061/PPPM – Electricity Transmission Hub - HVDC Converter Station, Substations etc
-
-I am writing to object to application 25/00061/PPPM and to the additional environmental information now submitted and re-advertised under Regulation 27. I submit this within the 30-day period beginning 7 August 2025.
-I am writing to formally object to the proposed High Voltage Direct Current (HVDC) converter station approximately 2km to the southwest of Stornoway in the vicinity of Macaulay Farm. This objection is based on material planning considerations, including environmental destruction, failure to comply with planning policy, severe impact on local amenity, and major infrastructure concerns.
-The proposed development, covering 285 hectares—an area equivalent to the size of Stornoway or 399 football pitches—is grossly disproportionate and represents an unacceptable level of industrialisation in this rural and environmentally sensitive area.
-
-[PERSONAL]
-1. Environmental Impact
-The proposed converter station and its associated infrastructure, including wind farms, pylons, and substations, pose a significant threat to the local environment,
-particularly through: mitigating climate change by storing vast amounts of carbon. The excavation, drainage, and construction required for this project would lead to permanent damage to peatland ecosystems, releasing stored carbon and undermining Scotland’s climate targets and biodiversity commitments.
-This contradicts:
-  ● The Scottish Government’s Peatland Action Plan, which aims to protect and restore peatlands.
-  ● The Climate Change (Scotland) Act 2019, which commits to net-zero emissions by 2045.
-b) Disruption to Protected Wildlife
-The proposed site is home to Red List bird species—species of high conservation concern that are already experiencing significant declines. Large-scale development, along with increased noise, artificial lighting, and habitat disturbance, will have irreversible negative impacts on these species.
-The destruction of habitats and increased human activity will disturb nesting and breeding patterns, affecting bird species such as:
-  ● Golden Eagle (Aquila chrysaetos)
-  ● Merlin (Falco columbarius)
-  ● Red-throated Diver (Gavia stellata)
-The UK Nature Conservation (Scotland) Act 2004 requires authorities to safeguard biodiversity—this proposal clearly contradicts this obligation.
-
-2. Severe Impact on Amenity
-a) Noise and Light Pollution
-  ● A HVDC converter station of this magnitude will generate a continuous low-frequency hum, which is known to cause sleep disturbances, stress, and reduced quality of life for residents.
-  ● 24-hour security and operational lighting will result in significant light pollution, disrupting the dark skies of the Outer Hebrides, an important feature of the region’s natural heritage.
-b) Visual Impact
-  ● The proposed converter station is an industrial structure, entirely out of character with its rural surroundings.
-  ● Given the lack of natural screening, the facility will be highly visible from multiple viewpoints, permanently altering the landscape.
-  ● The cumulative impact of the converter station plus associated wind farms and infrastructure will further degrade the natural beauty of the area.
-
-3. Infrastructure & Road Safety Concerns
-a) Increased Traffic and Road Safety Risks
-The construction phase will result in a major increase in heavy goods vehicle
-(HGV) traffic, which will:  
-  ● Damage rural roads, which are not built to withstand industrial transport.
-  ● Increase the risk of accidents for pedestrians, cyclists, and other road users.
-  ● Cause congestion on key routes, particularly in and around Stornoway.
-There is no clear mitigation strategy for these impacts, making the proposal irresponsible and unviable.
-b) Strain on Local Services
-  ● Emergency services, drainage, and waste management systems may struggle to cope with the demands of this facility.
-  ● The Stornoway area has limited infrastructure to support such an industrial project, yet there has been no clear assessment of how local services will be affected.
-
-4. Planning Policy Violations & ‘Salami Slicing’ of Developments
-a) Inadequate Consideration of Cumulative Impact
-This application fails to acknowledge the larger industrialisation plan for this area. The converter station is only one part of a wider network of developments,
-including:
-  ● Stornoway Wind Farm (EDF/ESB) – 33 turbines, up to 180m in height
-  ● Proposed substations for the N3 Talisk and N4 Spiorad na Mara wind farms
-  ● Multiple onshore windfarm substations
-  ● Onshore, near shore and off shore windfarms around Lewis
-Each project is being considered individually, which artificially reduces their perceived impact. This is a clear example of ‘salami slicing’, where a large development is broken into smaller applications to avoid proper scrutiny.
-This approach contradicts both national and local planning policies, including:
-  ● Scottish Planning Policy (SPP), which states that “cumulative impacts must be fully assessed before determining major infrastructure projects.”
-  ● Comhairle nan Eilean Siar Local Development Plan, which seeks to protect natural and cultural heritage from inappropriate development.
-b) Failure to Conduct a Comprehensive Environmental Impact Assessment
-(EIA)
-Despite the massive scale of this proposal and its interconnection with multiple other industrial projects, a comprehensive EIA has not been completed.
-  ● An EIA must be undertaken that considers the combined impact of this converter station and all associated developments before any decision is
-made.
-  ● Failure to do so would represent a significant procedural flaw, which could lead to legal challenges against the project.
-
-Conclusion
-This proposal is fundamentally flawed and must be rejected on the basis of:
-1. Irreversible damage to peatlands, undermining Scotland’s climate and biodiversity commitments.
-2. Severe disruption to wildlife, including protected Red List species.
-3. Significant loss of residential amenity, due to noise, light pollution, and visual impact.
-4. Major infrastructure concerns, including road safety risks and strain on local services.
-5. Failure to properly assess the cumulative impact, violating planning policy.
-6. Lack of a full Environmental Impact Assessment, making the application incomplete and unreliable.
-
-I urge Comhairle nan Eilean Siar to reject this application and insist on a full-scale review of the industrialisation of this area, with proper environmental scrutiny.
-
-Please confirm receipt of this objection.
-
-Yours faithfully
-[NAME]
-Full postal address: [ADDRESS]`;
-
-    // Default to short version
-    let currentTemplate = objectionShort;
-
-    // Update the email preview
-    function updateEmailPreview() {
-        const name = document.getElementById('userName').value || '[NAME]';
-        const address = document.getElementById('userAddress').value || '[ADDRESS]';
-        const personalStatement = document.getElementById('personalStatement').value.trim();
-        // If a personal statement is provided add 
-        const personalText = personalStatement ? personalStatement + "\n" : "";
-        // Replace all placeholders
-        const populatedText = currentTemplate
-          .replace('[NAME]', name)
-          .replace('[ADDRESS]', address)
-          .replace('[PERSONAL]', personalText);
-        document.getElementById('emailPreview').textContent = populatedText;
-      }
-
-
-
-    // Toggle short and long version buttons
-    document.getElementById('shortBtn').addEventListener('click', () => {
-      currentTemplate = objectionShort;
-      document.getElementById('shortBtn').classList.add('active');
-      document.getElementById('longBtn').classList.remove('active');
-      updateEmailPreview();
-    });
-    document.getElementById('longBtn').addEventListener('click', () => {
-      currentTemplate = objectionLong;
-      document.getElementById('longBtn').classList.add('active');
-      document.getElementById('shortBtn').classList.remove('active');
-      updateEmailPreview();
-    });
-
-    // Update preview as user types
-    document.getElementById('userName').addEventListener('input', updateEmailPreview);
-    document.getElementById('userAddress').addEventListener('input', updateEmailPreview);
-    document.getElementById('personalStatement').addEventListener('input', updateEmailPreview);
-
-
-    // When generate is clicked, open the default email client via a mailto link
-  document.getElementById('generate-btn').addEventListener('click', () => {
-      const name = document.getElementById('userName').value.trim();
-      const address = document.getElementById('userAddress').value.trim();
-
-      // Check required fields
-      if (name === '' || address === '') {
-        alert("Please add your name and address before sending the email. Your objection will not be counted without this information.");
-        return;
-      }
-
-      const personalStatement = document.getElementById('personalStatement').value.trim();
-      const personalText = personalStatement ? personalStatement + "\n\n" : "";
-      const populatedText = currentTemplate
-        .replace('[NAME]', name)
-        .replace('[ADDRESS]', address)
-        .replace('[PERSONAL]', personalText);
-
-      // Construct mailto link 
-      const recipient = "planning@cne-siar.gov.uk";
-      const subject = "25/00061/PPPM – Electricity Transmission Hub - HVDC Converter Station, Substations etc";
-      const body = populatedText;
-      const mailtoLink = "mailto:" + encodeURIComponent(recipient) +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-      window.location.href = mailtoLink;
-    });
-
-
-
-    // Initial population of the email preview
-    updateEmailPreview();
-    
-    document.getElementById('copy-btn').addEventListener('click', () => {
-        const emailText = document.getElementById('emailPreview').textContent;
-        navigator.clipboard.writeText(emailText).then(() => {
-            alert("Email text copied to clipboard!");
-        }).catch(err => {
-            alert("Failed to copy text: " + err);
-        });
-    });
-    
-  </script>
-
-<!-- Share Buttons -->
-<div class="share-buttons" style="text-align: center; margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-  
-  <!-- WhatsApp -->
-  <a
-    href="https://api.whatsapp.com/send?text=We%20need%20your%20help%20to%20stop%20the%20Arnish%20Hub!%20Objections%20close%20today,%205th%20Sep%20%E2%80%94%20takes%20just%202%20mins:%20https%3A%2F%2Fobjecttoarnishhub.com%0A%0AReasons%20to%20object%3A%20480,000m3%20of%20peat%20to%20be%20dug%20up,%20endangered%20birds%20%2B%20otters%20lose%20habitats,%20River%20Creed%20at%20risk%20of%20pollution.%20The%20hub%20is%20enormous%20(23%20Murrayfield%20pitches),%20visible%20from%20the%20castle%20grounds,%20Iolaire%20Monument%20%26%20War%20Memorial.%20First%20step%20in%20industrialising%20Lewis;%20projects%20like%20Spiorad%20na%20Mara%20depend%20on%20it."
-    target="_blank"
-    style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px;"
-  >
-    <i class="fab fa-whatsapp" style="font-size: 40px; color: #25D366;"></i>
-    <span style="font-size: 1rem; color: #333;">Share this with your friends!</span>
-  </a>
-
-  <!-- Messenger (mobile only) -->
-  <a
-    href="fb-messenger://share?link=https%3A%2F%2Fobjecttoarnishhub.com"
-    class="messenger-share"
-    style="text-decoration: none; align-items: center; gap: 10px;"
-    
-  >
-    <i class="fab fa-facebook-messenger" style="font-size: 40px; color: #0084FF;"></i>
-    <span style="font-size: 1rem; color: #333;">Share on Messenger </span>
-  </a>
-
-</div>
+      <!-- Deadline-passed banner -->
+      <div class="status-banner" style="
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+          ">
+        <h2 style="margin: 0 0 10px; color: #2e7d32; font-size: 1.5rem;">
+          Thank you to everyone who submitted an objection!
+        </h2>
+        <p style="margin: 0 0 8px; color: #333; font-size: 1rem;">
+          The deadline for the Arnish Hub has now passed.
+        </p>
+        <p style="margin: 0; color: #333; font-size: 1rem;">
+          Please keep an eye out, more objection windows will open soon including Northland’s wind farm.
+        </p>
+      </div>
 
 
 <!-- Social Follow Footer -->
 <div class="follow-footer" style="text-align: center; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px;">
   <p style="font-size: 1rem; color: #333; margin-bottom: 10px;">Follow ProtectHebrideanWaters to stay informed</p>
-  <a href="https://www.instagram.com/protectHebrideanWaters" target="_blank" style="margin: 0 10px; text-decoration: none;">
+  <a href="https://www.instagram.com/protectHebrideanWaters" target="_blank"
+    style="margin: 0 10px; text-decoration: none;">
     <i class="fab fa-instagram" style="font-size: 30px; color: #E1306C;"></i>
   </a>
-  <a href="https://www.facebook.com/share/1EVxks9vSf/?mibextid=wwXIfr" target="_blank" style="margin: 0 10px; text-decoration: none;">
+  <a href="https://www.facebook.com/protectHebrideanWaters" target="_blank"
+    style="margin: 0 10px; text-decoration: none;">
     <i class="fab fa-facebook" style="font-size: 30px; color: #4267B2;"></i>
   </a>
 </div>
 
 
-<div class="instagram-footer"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DITdzritDC0/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/DITdzritDC0/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/DITdzritDC0/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Protect Hebridean Waters (@protecthebrideanwaters)</a></p></div></blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<!-- Instagram Embed Script -->
-<script async src="//www.instagram.com/embed.js"></script>
+
+
+
+
+
 </body>
+
 </html>
